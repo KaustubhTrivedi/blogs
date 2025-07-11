@@ -11,6 +11,14 @@ export async function GET(context) {
 		items: posts.map((post) => ({
 			...post.data,
 			link: `/blog/${post.id}/`,
+			// Add content for better n8n processing
+			content: post.body,
+			// Add custom fields for n8n
+			customData: `
+				<guid>${post.id}</guid>
+				<category>blog</category>
+				<author>Kaustubh Trivedi</author>
+			`,
 		})),
 	});
 }
