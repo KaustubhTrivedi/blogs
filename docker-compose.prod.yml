@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
       target: production
     ports:
-      - "80:3001"
+      - "3001:3001"
     restart: unless-stopped
     environment:
       - NODE_ENV=production
