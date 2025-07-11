@@ -35,8 +35,8 @@ if ! docker info >/dev/null 2>&1; then
 fi
 
 # Check if docker-compose is installed
-if ! command -v docker-compose >/dev/null 2>&1; then
-    log_error "docker-compose is not installed. Please install it and try again."
+if ! command -v docker compose >/dev/null 2>&1; then
+    log_error "docker compose is not installed. Please install it and try again."
     exit 1
 fi
 
@@ -48,10 +48,10 @@ fi
 
 # Build and deploy
 log_info "Building Docker image..."
-docker-compose -f $COMPOSE_FILE build --no-cache
+docker compose -f $COMPOSE_FILE build --no-cache
 
 log_info "Starting services..."
-docker-compose -f $COMPOSE_FILE up -d
+docker compose -f $COMPOSE_FILE up -d
 
 # Wait for health check
 log_info "Waiting for service to be healthy..."
