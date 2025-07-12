@@ -55,7 +55,7 @@ docker compose -f $COMPOSE_FILE up -d
 
 # Wait for health check
 log_info "Waiting for service to be healthy..."
-timeout 60s bash -c 'until docker-compose -f '$COMPOSE_FILE' ps '$SERVICE_NAME' | grep -q "healthy"; do sleep 2; done'
+timeout 60s bash -c 'until docker compose -f '$COMPOSE_FILE' ps '$SERVICE_NAME' | grep -q "healthy"; do sleep 2; done'
 
 if [ $? -eq 0 ]; then
     log_info "✅ Deployment successful! Service is healthy."
@@ -63,7 +63,7 @@ if [ $? -eq 0 ]; then
 else
     log_error "❌ Deployment failed. Service is not healthy."
     log_info "Checking logs..."
-    docker-compose -f $COMPOSE_FILE logs $SERVICE_NAME
+    docker compose -f $COMPOSE_FILE logs $SERVICE_NAME
     exit 1
 fi
 
